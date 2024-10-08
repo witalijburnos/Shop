@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shop/data_bloc.dart';
 import 'package:shop/my_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Shop());
 }
 
-class MyApp extends StatelessWidget {
+class Shop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider(
-        create: (context) => DataBloc(),
+        create: (context) => DataCubit(),
         child: MyWidget(),
       ),
     );

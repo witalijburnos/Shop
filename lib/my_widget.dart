@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:shop/data_bloc.dart';
 import 'package:shop/data_event.dart';
 import 'package:shop/data_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final dataBloc = BlocProvider.of<DataBloc>(context);
+    final dataCubit = BlocProvider.of<DataCubit>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Сетевые запросы с dio и Bloc'),
+        title: Text('Сетевые запросы с dio и Cubit'),
       ),
       body: Center(
-        child: BlocBuilder<DataBloc, DataState>(
+        child: BlocBuilder<DataCubit, DataState>(
           builder: (context, state) {
             if (state is InitialDataState) {
               return Text('Нажмите кнопку для загрузки данных.');
@@ -29,7 +30,7 @@ class MyWidget extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          dataBloc.add(FetchDataEvent());
+          dataCubit.fetchData();
         },
         child: Icon(Icons.refresh),
       ),
